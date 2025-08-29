@@ -30,6 +30,15 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
+
+          <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="usuarioMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span id="usuarioNombre"></span>
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="usuarioMenu">
+    <li><a class="dropdown-item" href="#" id="logout">Cerrar sesión</a></li>
+  </ul>
+</li>
           <li class="nav-item">
           </li>
         </ul>
@@ -37,12 +46,16 @@
     </div>
   </nav>
   <main class="pb-5 container">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
-    </div>
-  </main>
+  <!-- Título de la página -->
+  <div class="text-center p-4">
+    <h2>Autos</h2>
+  </div>
+
+  <!-- Contenedor donde se cargarán los productos -->
+  <div class="row" id="products-container">
+    <!-- Aquí se insertarán las tarjetas de productos dinámicamente -->
+  </div>
+</main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
