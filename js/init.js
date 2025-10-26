@@ -84,12 +84,22 @@ const usuarioNombre = document.getElementById("usuarioNombre");
     if (usuarioNombre) {
 usuarioNombre.textContent = datosUsuario.usuario;
     }
+
+    //inserta dinámicamente el menú desplegable si no existe o está incompleto
+    const usuarioMenu = document.getElementById("usuarioMenu");
+    if (usuarioMenu) {
+      const dropdown = usuarioMenu.nextElementSibling;
+      if (dropdown && !dropdown.querySelector('a[href="my-profile.html"]')) {
+        const miPerfil = document.createElement("li");
+        miPerfil.innerHTML = '<a class="dropdown-item" href="my-profile.html">Mi perfil</a>';
+        dropdown.insertBefore(miPerfil, dropdown.firstChild);
+      }
+    }
   }
 }
 
 // Ejecutar al cargar la página
 document.addEventListener("DOMContentLoaded", function () {
-// Verificar sesión en todas las páginas excepto login.html
 if (!window.location.pathname.includes('login.html')) {
     verificarSesion();
     mostrarUsuarioEnNavbar();
@@ -104,3 +114,21 @@ e.preventDefault();
     });
   }
 });
+
+const toggle = document.getElementById("darkModeToggle");
+
+toggle.addEventListener("change", function() {
+  if (this.checked) {
+    document.body.classList.add("dark-mode");
+    localStorage.setItem("modoOscuro", "true");
+  } else {
+    document.body.classList.remove("dark-mode");
+    localStorage.setItem("modoOscuro", "false");
+  }
+});
+
+// Al cargar la página leer la preferencia
+if (localStorage.getItem("modoOscuro") === "true") {
+  toggle.checked = true;
+  document.body.classList.add("dark-mode");
+}

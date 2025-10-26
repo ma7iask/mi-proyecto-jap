@@ -10,6 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -39,20 +40,85 @@
     <li><a class="dropdown-item" href="#" id="logout">Cerrar sesión</a></li>
   </ul>
 </li>
+
+<!-- Botón modo oscuro/modo claro -->
+<li class="nav-item">
+    <input type="checkbox" id="darkModeToggle">
+    <div class="display">
+      <label for="darkModeToggle" class="toggle-label">
+        <div class="circle">
+          <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+</svg>
+
+          <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd" />
+</svg>
+
+        </div>
+      </label>
+    </div>
+</li>
+
           <li class="nav-item">
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <main class="pb-5 container">
+<main class="pb-5 container">
   <!-- Título de la página -->
   <div class="text-center p-4">
-    <h2>Autos</h2>
+
+    <h2 id="category-title"></h2> <!-- Título dinámico para mostrar el nombre correcto de la categoría -->
+    <p class="lead" > Verás aquí todos los productos de la categoría seleccionada.</p>
+  </div>
+
+  <!-- Campo buscador para filtrar productos en tiempo real - Desafiate -->
+  <div class="row mb-4">
+    <div class="col-md-6 offset-md-3">
+      <div class="input-group">
+        <input type="search" class="form-control" id="searchInput" placeholder="Buscar productos...">
+      </div>
+    </div>
   </div>
 
   <!-- Contenedor donde se cargarán los productos -->
-  <div class="row" id="products-container">
+
+
+  <div class="container mb-4"> 
+    <div class="row mb-2"> 
+        <div class="col d-flex justify-content-end"> 
+          <div class="btn-group" role="group" > 
+                <button class="btn btn-light border"  id="sortAsc"  title="Ordenar por precio ascendente"> 
+                  <i class="fa fa-sort-amount-asc"></i> 
+                </button> 
+                <button class="btn btn-light border" id="sortDesc" title="Ordenar por precio descendente"> 
+                      <i class="fa fa-sort-amount-desc"></i> 
+                </button> 
+                <button class="btn btn-light border"  id="sortByCount" title="Ordenar por relevancia (más vendidos)"> 
+                  <i class="fa fa-star"></i> 
+                </button> 
+          </div> 
+        </div> 
+    </div> 
+      <div class="row"> 
+        <div class="col d-flex justify-content-end align-items-center gap-2"> 
+          <div class="input-group" style="width: auto;" > 
+              <input type="number" class="form-control" id="rangeFilterPriceMin"  placeholder="Mín." style="width:100px;"  step="500" min="0"> 
+              <input type="number"  class="form-control" id="rangeFilterPriceMax" placeholder="Máx."  style="width: 100px;" step="500" min="0"> 
+          </div> 
+          <div class="btn-group"> 
+              <button class="btn btn-primary" id="rangeFilterPriceBtn" >Filtrar</button> 
+              <button  class="btn btn-outline-dark" id="clearRangeFilter" > Limpiar </button> 
+          </div> 
+        </div> 
+    </div> 
+  </div>  
+
+  <!-- Contenedor RESPONSIVO para productos -->
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4" id="products-container">
     <!-- Aquí se insertarán las tarjetas de productos dinámicamente -->
   </div>
 </main>

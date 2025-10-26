@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function(){
     
-    const sesionActiva = localStorage.getItem('sesionActiva');
-    if (sesionActiva !== 'true') {
+const sesionActiva = localStorage.getItem('sesionActiva');
+if (sesionActiva !== 'true') {
 
-        window.location.href = "login.html";
+    window.location.href = "login.html";
     return;
 }
     
